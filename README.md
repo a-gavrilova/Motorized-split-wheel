@@ -4,8 +4,20 @@ I study Purkinje cells activity in cereblelum of mice undergoing locomotion adap
 
 Here is the hardware & software developed for such behavioral setup.
 
-##Hardware
+## Hardware
 
-https://teknic.com/model-info/CPM-SDSK-2310S-EQN/  Servo motor
+1. https://teknic.com/model-info/CPM-SDSK-2310S-EQN/  Servo motor
+2. https://teknic.com/ipc-5/    power supply
+3. https://teknic.com/products/io-motion-controller/clcr-4-13/  ClearCore Controller
+4. https://teknic.com/IPC35-CABLE110/   1 cable from power supply to the general power supply
+5. https://teknic.com/CPM-CABLE-PWR-MS120/  2 cables from power supply to the motors
+6. https://teknic.com/CPM-CABLE-CTRL-MU120/  2 cables from ClearCore Controller to the motors
+7. https://teknic.com/CPM-CABLE-USB-120/      2 cables from motor to the PC (for calibrating motors)
+8. https://teknic.com/CC-3TERM-PLUG-10PC/     
+9. https://teknic.com/CPM-CABLE-USB-120AB/    from ClearCore Controller to the PC
+10. https://teknic.com/PWR-IO-24VDC/        24 VDC power supply (I used analog from Amazon
 
-##Software
+
+## Software
+
+Motors are controlled using Arduino board, which is represented in ClearCore Controller. 
