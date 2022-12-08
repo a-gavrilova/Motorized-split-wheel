@@ -2,7 +2,7 @@
 
 I study Purkinje cells activity in cereblelum of mice undergoing locomotion adaptation task. I designed a behavioral setup consisting of 2 motorized wheels and head-fixation system. This method can be combined with various methods, allowing to record neuronal activity, such as regular two-photon calcium imaging, voltage imaging and electrophysiological recordings. 
 
-Here is the hardware & software developed for such behavioral setup.
+Here is the hardware used and software developed for such behavioral setup.
 
 ## Hardware
 
@@ -20,4 +20,12 @@ Here is the hardware & software developed for such behavioral setup.
 
 ## Software
 
-Motors are controlled using Arduino board, which is represented in ClearCore Controller. 
+All the programs used for calibration and running motors can be downloaded from the main ClearCore website: https://teknic.com/downloads/.
+For calibration: ClearPath -> Software
+
+- ClearCore_Microchip_Installer
+- ClearCore_Arduino_Wrapper_Installer
+- ClearCore_Port_Driver_Install
+Motors are controlled using Arduino board, which is represented in ClearCore Controller. However, before using the motors, it is necessary to calibrate them. I did it in the software 
+Also there is instruction how to set the Arduino connection: https://teknic.com/files/downloads/manual_install_instructions_arduino.pdf
+
