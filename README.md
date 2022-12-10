@@ -22,11 +22,12 @@ Here is the hardware used and software developed for such behavioral setup.
 ## Software
 
 All the programs used for calibration and running motors can be downloaded from the main ClearCore website: https://teknic.com/downloads/.
-For calibration: ClearPath -> Software
 
 - ClearCore_Microchip_Installer
 - ClearCore_Arduino_Wrapper_Installer
 - ClearCore_Port_Driver_Install
+- ClearPath-MC and -SD Series Motor Setup Program
+
 Motors are controlled using Arduino board, which is represented in ClearCore Controller. However, before using the motors, it is necessary to calibrate them. I did it in the software 
 Also there is instruction how to set the Arduino connection: https://teknic.com/files/downloads/manual_install_instructions_arduino.pdf
 
