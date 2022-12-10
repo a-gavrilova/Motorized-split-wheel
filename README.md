@@ -18,6 +18,7 @@ Here is the hardware used and software developed for such behavioral setup.
 10. https://teknic.com/PWR-IO-24VDC/        24 VDC power supply (I used analog from Amazon
 
 
+
 ## Software
 
 All the programs used for calibration and running motors can be downloaded from the main ClearCore website: https://teknic.com/downloads/.
