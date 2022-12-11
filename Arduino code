@@ -1,1 +1,158 @@
+/*
+ * Title: DualAxisSynchronized
+ *
+ */
 
+#include "ClearCore.h"
+
+// Specify which motors to move.
+// Options are: ConnectorM0, ConnectorM1, ConnectorM2, or ConnectorM3.
+#define motor0 ConnectorM0
+#define motor1 ConnectorM1
+
+// Select the baud rate to match the target serial device
+#define baudRate 9600
+
+// Define  acceleration limits to be used for each move
+int accelerationLimit = 600000; // pulses per sec^2
+ 
+// define some session related parameters ( all times are in milliseconds)
+int num_trials = 4; int rest_time = 10000 ; int mov_time = 30000; int TrialNumber =1; 
+// movement speeds of both motors 
+int vel_a = 500 ; int vel_b = -500 ; int scale_vel_a = 1 ;  int scale_vel_b = 2 ;//for split belt change from 1 to 0;  // 150 pulse/sec = 45 RPM  // 100 pulse/sec = 30 RPM 
+// if experimntal session or training session  
+int training_session = 0 ; //make this 0 for split belt
+  
+void setup() {
+    // set digital output 
+    pinMode(IO0, OUTPUT); 
+    pinMode(IO1, OUTPUT);
+    // Sets the input clocking rate. This normal rate is ideal for ClearPath
+    // step and direction applications
+    MotorMgr.MotorInputClocking(MotorManager::CLOCK_RATE_NORMAL);
+    // Sets all motor connectors into step and direction mode.
+    MotorMgr.MotorModeSet(MotorManager::MOTOR_ALL,
+                          Connector::CPM_MODE_STEP_AND_DIR);
+
+    // Put the motor connectors into the HLFB mode to read bipolar PWM (the
+    // correct mode for ASG w/ Measured Torque)
+    motor0.HlfbMode(MotorDriver::HLFB_MODE_HAS_BIPOLAR_PWM);
+    motor1.HlfbMode(MotorDriver::HLFB_MODE_HAS_BIPOLAR_PWM);
+ 
+    // Set the HFLB carrier frequencies to 482 Hz
+    motor0.HlfbCarrier(MotorDriver::HLFB_CARRIER_482_HZ);
+    motor1.HlfbCarrier(MotorDriver::HLFB_CARRIER_482_HZ);
+//    
+
+    // Sets the maximum acceleration for each move
+    motor0.AccelMax(accelerationLimit);
+    motor1.AccelMax(accelerationLimit);
+    
+
+    // Sets up serial communication and waits up to 5 seconds for a port to open
+    // Serial communication is not required for this example to run
+    Serial.begin(baudRate);
+    uint32_t timeout = 5000;
+    uint32_t startTime = millis();
+    while (!Serial && millis() - startTime < timeout) {
+        continue;
+    }
+
+    // Enables the motors; homing will begin automatically if enabled in MSP
+    motor0.EnableRequest(true);
+    Serial.println("Motor 0 Enabled");
+    motor1.EnableRequest(true);
+    Serial.println("Motor 1 Enabled");
+
+
+}
+
+void loop() {  
+   if (training_session == 1){
+    while (TrialNumber <= num_trials){ 
+    
+    
+    Serial.print("Trial number  : "); Serial.print(TrialNumber); 
+    Serial.print("  Motor 1 Velocity (cm/sec) = "); Serial.print(vel_a); 
+    Serial.print("  Motor 2 Velocity (cm/sec) = "); Serial.print(vel_b);
+    Serial.println();
+    digitalWrite(IO0, true); delay(100); digitalWrite(IO0, false);
+    digitalWrite(IO1, true);  //camera start 
+    SynchronizedMove(vel_a,vel_b,mov_time);
+    digitalWrite(IO1, false);  // camera end
+    digitalWrite(IO0, true); delay(100); digitalWrite(IO0, false);  
+    delay(rest_time);
+    TrialNumber++;
+    }
+}
+ if(training_session ==0){
+   Serial.println("This is splitbelt training");
+  while (TrialNumber <= num_trials){ 
+    // baseline period 
+    Serial.print("Trial number  : "); Serial.print(TrialNumber); Serial.println();
+    Serial.print("  Motor 1 Velocity (cm/sec) = "); Serial.print(vel_a); 
+    Serial.print("  Motor 2 Velocity (cm/sec) = "); Serial.print(vel_b);
+    Serial.println();
+    digitalWrite(IO1, true);  //camera start 
+    digitalWrite(IO0, true); delay(100); digitalWrite(IO0, false);
+    SynchronizedMove(vel_a,vel_b,mov_time);
+    digitalWrite(IO0, true); delay(100); digitalWrite(IO0, false);
+    delay(rest_time);
+   // splitbelt time 
+    Serial.print("  Motor 1 Velocity (cm/sec) = "); Serial.print(vel_a*scale_vel_a); 
+    Serial.print("  Motor 2 Velocity (cm/sec) = "); Serial.print(vel_b*scale_vel_b);
+    Serial.println();
+    digitalWrite(IO0, true); delay(200); digitalWrite(IO0, false);
+    SynchronizedMove(vel_a*scale_vel_a,vel_b*scale_vel_b,mov_time);
+    digitalWrite(IO0, true); delay(200); digitalWrite(IO0, false);
+    delay(rest_time);
+
+    Serial.print("  Motor 1 Velocity (cm/sec) = "); Serial.print(vel_a); 
+    Serial.print("  Motor 2 Velocity (cm/sec) = "); Serial.print(vel_b);
+    Serial.println();
+    digitalWrite(IO0, true); delay(100); digitalWrite(IO0, false);
+    SynchronizedMove(vel_a,vel_b,mov_time);
+    digitalWrite(IO1, false);  // camera end
+    digitalWrite(IO0, true); delay(100); digitalWrite(IO0, false);
+    delay(rest_time);
+    
+    TrialNumber++;
+}
+}
+Serial.println("Session ended please remove the mouse");
+    motor0.EnableRequest(false);
+    Serial.println("Motor 0 disabled");
+    motor1.EnableRequest(false);
+    Serial.println("Motor 1 disabled");
+delay(100000000);
+}
+
+/*------------------------------------------------------------------------------
+ * SynchronizedMove
+ *
+ *    Moves two motors at commanded velocity for a specific time followed by stoppage 
+ *
+ * Parameters:
+ *    int velcoity_a  - velocity of motor connected to m0 in step pulses per second 
+ *    int velocity_b  - velocity of motor connected to m1 
+ *    int mov_time    - movement time in milliseconds 
+ * Returns: None
+ */
+void SynchronizedMove(int velocity_a, int velocity_b, int move_time) {
+
+    uint32_t currenttime = millis();
+    Serial.println("Move start");
+     while (millis()-currenttime < move_time){ 
+    // Move both motors the same distance;
+    motor0.MoveVelocity(velocity_a);
+    motor1.MoveVelocity(velocity_b);
+     }
+    Serial.println("Move Done");
+//    motor0.AccelMax(0);
+//    motor1.AccelMax(0);
+    motor0.MoveVelocity(0);
+    motor1.MoveVelocity(0);
+    
+    
+}
+//------------------------------------------------------------------------------
