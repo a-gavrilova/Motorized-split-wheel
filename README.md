@@ -1,6 +1,6 @@
 # Motorized-split-wheel
 
-I study Purkinje cells activity in cerebellum of mice undergoing locomotion adaptation task. I designed a behavioral setup consisting of 2 motorized wheels and head-fixation system. This method can be combined with various methods, allowing to record neuronal activity, such as regular two-photon calcium imaging, voltage imaging and electrophysiological recordings. 
+I study Purkinje cells activity in cerebellum of mice undergoing locomotion adaptation task. In the Optical Neuroimaging Unit (OIST, Japan), we designed a behavioral setup consisting of 2 motorized wheels and head-fixation system. This method can be combined with various methods, allowing to record neuronal activity, such as regular two-photon calcium imaging, voltage imaging and electrophysiological recordings. 
 
 Here is the hardware used and software developed for such behavioral setup.
 
@@ -18,7 +18,6 @@ Here is the hardware used and software developed for such behavioral setup.
 10. https://teknic.com/PWR-IO-24VDC/        24 VDC power supply (I used analog from Amazon
 
 
-
 ## Software
 
 All the programs used for calibration and running motors can be downloaded from the main ClearCore website: https://teknic.com/downloads/.
@@ -28,17 +27,17 @@ All the programs used for calibration and running motors can be downloaded from 
 - ClearCore_Port_Driver_Install
 - ClearPath-MC and -SD Series Motor Setup Program
 
-Motors are controlled using Arduino board, which is represented in ClearCore Controller. However, before using the motors, it is necessary to calibrate them. I did it in the software. Also there is instruction how to set the Arduino connection: https://teknic.com/files/downloads/manual_install_instructions_arduino.pdf
+Before using the motors, it is necessary to calibrate them using Motor Setup Prgram (MSP). After calibration, motor are ready to use. 
+Here is instruction how to set the Arduino connection: https://teknic.com/files/downloads/manual_install_instructions_arduino.pdf
 
+## Hardware all together
 ![20221129_102230](https://user-images.githubusercontent.com/116614806/206883302-3178ab78-eb8b-4c29-b412-e0049efcbb11.jpg)
 
 
 https://user-images.githubusercontent.com/116614806/206883289-c2d09c95-6587-4183-91dc-0f3674cbb988.mp4
 
+## Contact us
+Feel free to ask questions via opening an issue here or directly to the email: aleksandra.gavrilova@oist.jp
 
-
-
-
-
-
-
+## Contributors
+The project is led by myself with advices from Kuhn Unit current members. Design and making the pieces for the treadmill was done with the help of Machine Engineering Section at OIST. 
