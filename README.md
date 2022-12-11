@@ -28,10 +28,14 @@ All the programs used for calibration and running motors can be downloaded from 
 - ClearCore_Port_Driver_Install
 - ClearPath-MC and -SD Series Motor Setup Program
 
-Motors are controlled using Arduino board, which is represented in ClearCore Controller. However, before using the motors, it is necessary to calibrate them. I did it in the software 
-Also there is instruction how to set the Arduino connection: https://teknic.com/files/downloads/manual_install_instructions_arduino.pdf
+Motors are controlled using Arduino board, which is represented in ClearCore Controller. However, before using the motors, it is necessary to calibrate them. I did it in the software. Also there is instruction how to set the Arduino connection: https://teknic.com/files/downloads/manual_install_instructions_arduino.pdf
 
-https://user-images.githubusercontent.com/116614806/206883253-6fb42ac1-186d-400d-b936-7dbb8c5b727d.mp4
+![20221129_102230](https://user-images.githubusercontent.com/116614806/206883302-3178ab78-eb8b-4c29-b412-e0049efcbb11.jpg)
+
+
+https://user-images.githubusercontent.com/116614806/206883289-c2d09c95-6587-4183-91dc-0f3674cbb988.mp4
+
+
 
 
 
