@@ -58,10 +58,10 @@ The code used for the motor speed control can be found in the subfolder of the c
 
 ## Split-wheel setup all together
 The wheel is made with the 19 cm diameter, to fit under our microscope stage. 
-![20221129_102230](https://user-images.githubusercontent.com/116614806/206883302-3178ab78-eb8b-4c29-b412-e0049efcbb11.jpg)
 
 
-https://user-images.githubusercontent.com/116614806/206883289-c2d09c95-6587-4183-91dc-0f3674cbb988.mp4
+
+
 
 ## Contact us
 Feel free to ask questions via opening an issue here or directly to the email: aleksandra.gavrilova@oist.jp
