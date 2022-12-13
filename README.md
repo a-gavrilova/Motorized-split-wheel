@@ -1,4 +1,5 @@
 # Motorized split-wheel
+not finished yet
 
 I study Purkinje cells activity in cerebellum of mice undergoing locomotion adaptation task. For this purpose in the Optical Neuroimaging Unit (Prof. Bernd Kuhn, OIST, Japan), we designed a behavioral setup consisting of 2 motorized wheels and head-fixation system. This method can be combined with various methods, allowing to record neuronal activity, such as two-photon calcium imaging, voltage imaging and electrophysiological recordings. 
 
